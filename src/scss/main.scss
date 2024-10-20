@@ -1,0 +1,19 @@
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+@import "../../node_modules/aos/dist/aos.css";
+@import "../../node_modules/owl.carousel/dist/assets/owl.carousel.css";
+@import "../../node_modules/owl.carousel/dist/assets/owl.theme.default.css";
+
+//Base
+@import "./base/reset";
+@import "./base/vars";
+@import "./base/global";
+@import "./base/button";
+//Blocks
+@import "./blocks/header";
+
+body {
+    min-width: 320px;
+    font-family: 'Arimo', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
