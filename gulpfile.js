@@ -37,7 +37,7 @@ function serve(done) {
     proxy: "http://furniture-store/",
     notify: false, // Отключить уведомления
     open: true, // Автоматически открывать браузер
-    port: 3008 // Порт для сервера BrowserSync
+    port: 3009 // Порт для сервера BrowserSync
   });
   done();
 }

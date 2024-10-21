@@ -1,7 +1,5 @@
 .header {
-    @media (max-width: 1200px) {
-        padding: 10px 0;
-    }
+   padding: 10px 0;
 }
 
 /*=================================================================*/
@@ -25,29 +23,56 @@
         align-items: center;
         gap: 15px;
     }
-}
-.navbar__container-wp {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+    }
+    &__account {
+        .fa {
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover {
+                color: var(--hover-color);
+                border-color: var(--hover-color);
+            }
+        }
+    }
+    &__cart {
+        position: relative;
+    }
+
+    &__conuter-cart {
+        position: absolute;
+        top: -4px;
+        right: -15px;
+        background-color: #F07427;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 .nav-menu {
     position: relative;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
     z-index: 100;
-    .lang-item {
-        display: inline;
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 16px;
-    }
-    .current-lang {
-        font-weight: 600;
-        color: var(--accent-color)!important;
+    &__logo {
+        flex: 0 0 120px;
+        width: 120px;
+        height: 120px;
     }
 }
 
@@ -152,6 +177,7 @@
 .menu-list .dropdown-menu li a {
     background-color: #F0F0F0;
     font-weight: 400;
+
 }
 .menu-list .menu-item:hover > .dropdown-menu {
     opacity: 1;

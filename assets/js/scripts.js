@@ -3463,6 +3463,94 @@
 
 /***/ }),
 
+/***/ 43:
+/***/ (() => {
+
+console.log('menu');
+( function( $ ) {
+    $( document ).ready(function() {
+    $('#main-menu li.dropdown>a').on('click', function(){
+            $(this).removeAttr('href');
+            var element = $(this).parent('li');
+            if (element.hasClass('open')) {
+                element.removeClass('open');
+                element.find('li').removeClass('open');
+                element.find('ul').slideUp();
+            }
+            else {
+                element.addClass('open');
+                element.children('ul').slideDown();
+                element.siblings('li').children('ul').slideUp();
+                element.siblings('li').removeClass('open');
+                element.siblings('li').find('li').removeClass('open');
+                element.siblings('li').find('ul').slideUp();
+            }
+        });
+    
+        $('#main-menu>ul>li.dropdown>a').append('<span class="holder"></span>');
+    
+        (function getColor() {
+            var r, g, b;
+            var textColor = $('#main-menu').css('color');
+            textColor = textColor.slice(4);
+            r = textColor.slice(0, textColor.indexOf(','));
+            textColor = textColor.slice(textColor.indexOf(' ') + 1);
+            g = textColor.slice(0, textColor.indexOf(','));
+            textColor = textColor.slice(textColor.indexOf(' ') + 1);
+            b = textColor.slice(0, textColor.indexOf(')'));
+            var l = rgbToHsl(r, g, b);
+            if (l > 0.7) {
+                $('#main-menu>ul>li>a').css('text-shadow', '0 1px 1px rgba(0, 0, 0, .35)');
+                $('#main-menu>ul>li>a>span').css('border-color', 'rgba(0, 0, 0, .35)');
+            }
+            else
+            {
+                $('#main-menu>ul>li>a').css('text-shadow', '0 1px 0 rgba(255, 255, 255, .35)');
+                $('#main-menu>ul>li>a>span').css('border-color', 'rgba(255, 255, 255, .35)');
+            }
+        })();
+    
+        function rgbToHsl(r, g, b) {
+            r /= 255, g /= 255, b /= 255;
+            var max = Math.max(r, g, b), min = Math.min(r, g, b);
+            var h, s, l = (max + min) / 2;
+    
+            if(max == min){
+                h = s = 0;
+            }
+            else {
+                var d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch(max){
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+            return l;
+        }
+    });
+    } )( jQuery );
+
+
+let navbar = document.querySelector('.navbar');
+
+let menuOpenBtn = document.querySelector('.navbar .fa-bars');
+let closeOpenBtn = document.querySelector('.nav-links .fa-times');
+let navLinks = document.querySelector('.nav-links');
+
+menuOpenBtn.addEventListener('click', ()=> {
+    navLinks.style.left = '0';
+});
+
+closeOpenBtn.addEventListener('click', ()=> {
+    navLinks.style.left = '-100%';
+});
+  
+
+/***/ }),
+
 /***/ 611:
 /***/ (() => {
 
@@ -3547,8 +3635,12 @@ jQuery(document).ready(function($) {
 /* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aos__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var owl_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(764);
 /* harmony import */ var owl_carousel__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(owl_carousel__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _js_scripttotop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(611);
-/* harmony import */ var _js_scripttotop__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_scripttotop__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(43);
+/* harmony import */ var _js_menu__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_menu__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_scripttotop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(611);
+/* harmony import */ var _js_scripttotop__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_scripttotop__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 

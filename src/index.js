@@ -1,7 +1,9 @@
 import AOS from 'aos';
 import 'owl.carousel';
+import './js/menu';
 import './js/scripttotop';
 import './scss/main.scss';
+
 
 //AOS animation
 AOS.init({
