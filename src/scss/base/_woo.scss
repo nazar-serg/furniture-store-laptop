@@ -1,0 +1,34 @@
+.product-card-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.product-details {
+	padding-top: 15px;
+	flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+	h3 {
+		margin-bottom: 5px;
+		a {
+			font-size: 20px;
+			line-height: 22px;
+		}
+	}
+	.price {
+		color: var(--accent-color);
+		font-size: 18px;
+		line-height: 22px;
+		margin-top: auto;
+	}
+}
+.product-thumb {
+	overflow: hidden;
+	img {
+		transition: transform 0.3s ease;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}

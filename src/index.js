@@ -2,6 +2,7 @@ import AOS from 'aos';
 import 'owl.carousel';
 import './js/menu';
 import './js/scripttotop';
+import './js/more-less-content.js';
 import './scss/main.scss';
 
 

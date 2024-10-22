@@ -7,10 +7,16 @@
 @import "./base/vars";
 @import "./base/global";
 @import "./base/button";
+@import "./base/woo";
 //Blocks
 @import "./blocks/header";
 @import "./blocks/hero";
 @import "./blocks/all-category";
+@import "./blocks/featured-products";
+@import "./blocks/about";
+@import "./blocks/articles";
+@import "./blocks/home-text";
+
 
 body {
     min-width: 320px;
