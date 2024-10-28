@@ -34,7 +34,7 @@ function watchFiles() {
 // Задача для запуска BrowserSync с прокси
 function serve(done) {
   browserSync.init({
-    proxy: "http://furniture-store/",
+    proxy: "http://localhost/featurestore/",
     notify: false, // Отключить уведомления
     open: true, // Автоматически открывать браузер
     port: 3009 // Порт для сервера BrowserSync

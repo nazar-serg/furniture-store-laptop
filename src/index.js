@@ -3,6 +3,10 @@ import 'owl.carousel';
 import './js/menu';
 import './js/scripttotop';
 import './js/more-less-content.js';
+import './js/mini-cart.js';
+import './js/variation-product.js';
+import './js/product-image.js';
+import './js/search-container.js';
 import './scss/main.scss';
 
 
@@ -12,8 +16,9 @@ AOS.init({
 });
 
 jQuery(document).ready(function($) {
-    //owl-carousel
-    $(".owl-carousel-full").owlCarousel({
+
+       //owl-carousel
+       $(".owl-carousel-full").owlCarousel({
         margin: 20,
         items: 4,
         nav: false,
@@ -39,7 +44,7 @@ jQuery(document).ready(function($) {
             }
         }
     });
-
+    
      // Добавляем обработчики событий для пользовательских кнопок
      $('.custom-nav-hit-product .prev').click(function() {
         $('.owl-carousel').trigger('prev.owl.carousel');
@@ -77,6 +82,27 @@ jQuery(document).ready(function($) {
         inputQty.val(newValue);
         $('.update-cart').prop('disabled', false);
     });
+
+    $('[data-fancybox="gallery"]').fancybox({
+        buttons: [
+            "zoom",
+            "close"
+        ],
+        loop: true,
+        protect: true,
+    });
+
+    $('form.variations_form').on('change', 'select', function() {
+        // Получаем ID выбранного варианта
+        var selectedVariationId = $(this).find(':selected').data('variation-id');
+
+        // Находим соответствующее изображение
+        $('#variation-images img[data-variation-id="' + selectedVariationId + '"]').each(function() {
+            var newImageUrl = $(this).attr('src');
+            $('#product-image').attr('src', newImageUrl);
+            $('#main-product-image').attr('href', newImageUrl); // Обновляем ссылку для лайтбокса
+        });
+    });
 });
 
 
@@ -98,6 +124,8 @@ function setEqualHeight() {
 $(window).on('load', setEqualHeight);
 $('.owl-carousel').on('initialized.owl.carousel', setEqualHeight);
 $(window).resize(setEqualHeight);
+
+
 
 
 

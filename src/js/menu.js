@@ -1,4 +1,3 @@
-console.log('menu');
 ( function( $ ) {
     $( document ).ready(function() {
     $('#main-menu li.dropdown>a').on('click', function(){

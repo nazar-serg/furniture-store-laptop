@@ -44,7 +44,14 @@
 								</div>
 							</nav>
 							<div class="navbar__info">
+							
 								<div class="navbar__search">Пошук</div>
+								<div class="navbar__search-full-container">
+									<div class="base-container">
+									<button class="close-btn">&times;</button>
+									<?php aws_get_search_form( true ); ?>
+									</div>
+								</div>
 								<div class="navbar__account">
 									<?php 
 									$link_account = get_field('account', 'option');
@@ -62,15 +69,24 @@
 								</div>
 								<?php if (! is_cart()): ?>
 								<div class="navbar__cart">
+									<a class="navbar__cart-link">
 									<img class="navbar__cart-icon"
 										src="<?php echo get_template_directory_uri() . '/assets/images/icon/shopping-cart.png'; ?>"
 										alt="Icon cart">
 									<span class="navbar__conuter-cart">
+									<span class="cart-badge">
 										<?php echo WC()->cart->get_cart_contents_count(); ?>
 									</span>
-								</div>
+									</span>
+									</a>
+								</a>
 								<?php endif; ?>
 							</div>
+							<div class="custom-mini-cart">
+							<span class="close-btn">&times;</span>
+								<?php woocommerce_mini_cart(); ?>
+							</div>
+							<div class="overlay"></div>
 						</div>
 					</div>
 				</div>

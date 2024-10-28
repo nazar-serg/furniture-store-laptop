@@ -19,9 +19,11 @@ function furniturestore_theme_enqueue_styles() {
     wp_deregister_script( 'jquery' );
 	wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js');
 	wp_enqueue_script( 'jquery' );
+    wp_enqueue_script('fancybox', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), null, true);
     wp_enqueue_script('furniturestore-main-js', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0.0', true);
     wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
-
+    
+    wp_enqueue_style('fancybox', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
     wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     wp_enqueue_style('furniturestore-main-css', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0', 'all');
 }
@@ -51,7 +53,6 @@ add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
 
 
 
-require_once get_template_directory() . './incs/woocommerce-hooks.php';
-require_once get_template_directory() . './incs/cpt.php';
-require_once get_template_directory() . './incs/class-awp-menu-walker.php';
-require_once get_template_directory() . './incs/shortcodes.php';
+require_once(get_template_directory() . '/incs/woocommerce-hooks.php');
+require_once(get_template_directory() . '/incs/class-awp-menu-walker.php');
+require_once(get_template_directory() . '/incs/shortcodes.php');

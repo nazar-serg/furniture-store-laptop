@@ -3466,7 +3466,6 @@
 /***/ 43:
 /***/ (() => {
 
-console.log('menu');
 ( function( $ ) {
     $( document ).ready(function() {
     $('#main-menu li.dropdown>a').on('click', function(){
@@ -3551,6 +3550,39 @@ closeOpenBtn.addEventListener('click', ()=> {
 
 /***/ }),
 
+/***/ 830:
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cartLink = document.querySelector('.navbar__cart-link');
+    const miniCart = document.querySelector('.custom-mini-cart');
+    const overlay = document.querySelector('.overlay');
+    const content = document.querySelector('.wrapper');
+    const closeBtn = document.querySelector('.custom-mini-cart .close-btn');
+
+    cartLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        miniCart.classList.add('active');
+        overlay.classList.add('active');
+        document.body.classList.add('no-scroll');
+    });
+
+    closeBtn.addEventListener('click', function() {
+        miniCart.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+
+    overlay.addEventListener('click', function() {
+        miniCart.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+
+});
+
+/***/ }),
+
 /***/ 419:
 /***/ (() => {
 
@@ -3578,6 +3610,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /***/ }),
 
+/***/ 45:
+/***/ (() => {
+
+jQuery(document).ready(function ($) {
+    $('.product-content-wrapper__image-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        nav: true,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        navText: [
+            '<span class="owl-prev owl-custom-prev-single-product">‹</span>',
+            '<span class="owl-next owl-custom-next-single-product">›</span>'
+        ],
+    });
+});
+
+
+/***/ }),
+
 /***/ 611:
 /***/ (() => {
 
@@ -3595,6 +3649,68 @@ jQuery(document).ready(function($) {
         return false;
     });
 });
+
+/***/ }),
+
+/***/ 882:
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const searchButton = document.querySelector('.navbar__search');
+    const searchContainer = document.querySelector('.navbar__search-full-container');
+    const closeButton = document.querySelector('.navbar__search-full-container .close-btn');
+
+    searchButton.addEventListener('click', function() {
+        searchContainer.classList.add('active');
+    });
+
+    closeButton.addEventListener('click', function() {
+        searchContainer.classList.remove('active');
+    });
+
+});
+
+/***/ }),
+
+/***/ 577:
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', function () {
+    const colorOptions = document.querySelectorAll('.color-option');
+    const colorSelect = document.querySelector('form.variations_form');
+    const productImage = document.querySelector('.woocommerce-product-gallery__image img');
+    const addToCartButton = document.querySelector('.single_add_to_cart_button');
+
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            
+            colorOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+
+            const variationId = this.getAttribute('data-variation-id');
+            const imageUrl = this.getAttribute('data-image');
+
+            colorSelect.querySelector('input[name="variation_id"]').value = variationId;
+
+            if (productImage && imageUrl) {
+                productImage.src = imageUrl;
+                productImage.srcset = imageUrl;
+            }
+        });
+    });
+
+    addToCartButton.addEventListener('click', function(event) {
+        this.classList.remove('disabled');
+        const activeColorOption = document.querySelector(".color-option.active");
+        if (!activeColorOption) {
+            event.preventDefault();
+            alert("Будь ласка, оберіть колір товару перед додаванням до кошика.");
+        }
+    });
+});
+
+
 
 /***/ })
 
@@ -3668,6 +3784,18 @@ jQuery(document).ready(function($) {
 /* harmony import */ var _js_scripttotop__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_scripttotop__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _js_more_less_content_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(419);
 /* harmony import */ var _js_more_less_content_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_more_less_content_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _js_mini_cart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(830);
+/* harmony import */ var _js_mini_cart_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_js_mini_cart_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _js_variation_product_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(577);
+/* harmony import */ var _js_variation_product_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_js_variation_product_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _js_product_image_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(45);
+/* harmony import */ var _js_product_image_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_js_product_image_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _js_search_container_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(882);
+/* harmony import */ var _js_search_container_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_js_search_container_js__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
 
 
 
@@ -3682,8 +3810,9 @@ aos__WEBPACK_IMPORTED_MODULE_0___default().init({
 });
 
 jQuery(document).ready(function($) {
-    //owl-carousel
-    $(".owl-carousel-full").owlCarousel({
+
+       //owl-carousel
+       $(".owl-carousel-full").owlCarousel({
         margin: 20,
         items: 4,
         nav: false,
@@ -3709,7 +3838,7 @@ jQuery(document).ready(function($) {
             }
         }
     });
-
+    
      // Добавляем обработчики событий для пользовательских кнопок
      $('.custom-nav-hit-product .prev').click(function() {
         $('.owl-carousel').trigger('prev.owl.carousel');
@@ -3747,6 +3876,27 @@ jQuery(document).ready(function($) {
         inputQty.val(newValue);
         $('.update-cart').prop('disabled', false);
     });
+
+    $('[data-fancybox="gallery"]').fancybox({
+        buttons: [
+            "zoom",
+            "close"
+        ],
+        loop: true,
+        protect: true,
+    });
+
+    $('form.variations_form').on('change', 'select', function() {
+        // Получаем ID выбранного варианта
+        var selectedVariationId = $(this).find(':selected').data('variation-id');
+
+        // Находим соответствующее изображение
+        $('#variation-images img[data-variation-id="' + selectedVariationId + '"]').each(function() {
+            var newImageUrl = $(this).attr('src');
+            $('#product-image').attr('src', newImageUrl);
+            $('#main-product-image').attr('href', newImageUrl); // Обновляем ссылку для лайтбокса
+        });
+    });
 });
 
 
@@ -3768,6 +3918,8 @@ function setEqualHeight() {
 $(window).on('load', setEqualHeight);
 $('.owl-carousel').on('initialized.owl.carousel', setEqualHeight);
 $(window).resize(setEqualHeight);
+
+
 
 
 
