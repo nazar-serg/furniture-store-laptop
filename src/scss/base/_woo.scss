@@ -432,12 +432,6 @@ select.orderby:hover {
     color: #333;
 }
 
-/* Форма добавления отзыва */
-#review_form_wrapper {
-    margin-top: 40px;
-    padding-top: 20px;
-}
-
 /* Заголовок формы */
 #review_form #reply-title {
     font-size: 22px;
@@ -550,6 +544,22 @@ select.orderby:hover {
 	margin-bottom: 80px;
 }
 
+#review_form_wrapper {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+#review_form_wrapper.open {
+    max-height: 800px;
+    opacity: 1;
+}
+#show-review-form {
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}
+
 /**
 * Star Rating
 */
@@ -632,10 +642,10 @@ select.orderby:hover {
 .woocommerce .hreview-aggregate .star-rating {
     margin: 10px 0 0;
 }
-.sushishop-product-rating {
+.furniture-product-rating {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: baseline;
     column-gap: 2px;
 }
 

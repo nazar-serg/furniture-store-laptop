@@ -43,6 +43,15 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_shop_loop_item_title' );
 
+	$rating_cnt = $product->get_rating_count();
+	if ($rating_cnt > 0) {
+		echo '<div class="furniture-product-rating">';
+		woocommerce_template_loop_rating();
+			echo '<div class="furniture-rating-count"> <small>(' . $rating_cnt . ')</small> </div>';
+		echo '</div>';	
+	}
+			
+
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
 	 *

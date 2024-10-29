@@ -3632,6 +3632,33 @@ jQuery(document).ready(function ($) {
 
 /***/ }),
 
+/***/ 171:
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const button = document.createElement('button');
+    button.id = 'show-review-form';
+    button.className = 'button';
+    button.textContent = reviewStrings.leaveReview;
+
+    const reviewsSection  = document.getElementById('reviews');
+    reviewsSection.append(button);
+
+    const reviewFormWrapper = document.getElementById('review_form_wrapper');
+
+    button.addEventListener('click', function() {
+        reviewFormWrapper.classList.toggle('open');
+
+        button.textContent = reviewFormWrapper.classList.contains('open') ? 
+        reviewStrings.hideReview : 
+        reviewStrings.leaveReview;
+    });
+
+});
+
+/***/ }),
+
 /***/ 611:
 /***/ (() => {
 
@@ -3792,6 +3819,9 @@ document.addEventListener('DOMContentLoaded', function () {
 /* harmony import */ var _js_product_image_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_js_product_image_js__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _js_search_container_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(882);
 /* harmony import */ var _js_search_container_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_js_search_container_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _js_review_form_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(171);
+/* harmony import */ var _js_review_form_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_js_review_form_js__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 

@@ -7,6 +7,7 @@ import './js/mini-cart.js';
 import './js/variation-product.js';
 import './js/product-image.js';
 import './js/search-container.js';
+import './js/review-form.js';
 import './scss/main.scss';
 
 
