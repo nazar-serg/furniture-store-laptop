@@ -212,9 +212,31 @@ input[type=number] {
   margin: 10px 0 20px;
 }
 
+.added_to_cart {
+  display: none;
+}
+
 .products-wrapper {
   display: flex;
-  gap: 40px;
+  column-gap: 40px;
+}
+@media (max-width: 768px) {
+  .products-wrapper {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+}
+
+.products-wrapper-no-flex {
+  display: inherit;
+}
+
+.sidebar-column {
+  flex: 0 1 25%;
+}
+
+.products-column {
+  flex: 0 1 75%;
 }
 
 .products-row {
@@ -223,11 +245,39 @@ input[type=number] {
   column-gap: 20px;
   row-gap: 40px;
 }
+@media (max-width: 992px) {
+  .products-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.products-row-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+  row-gap: 40px;
+}
+@media (max-width: 992px) {
+  .products-row-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .products-row-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .products-row-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 
 .products-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   margin-bottom: 25px;
 }
 
@@ -314,6 +364,8 @@ select.orderby:hover {
   text-decoration: none;
 }
 .product-content-wrapper__info .price {
+  font-size: 24px;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 .product-content-wrapper .product_meta {
@@ -381,6 +433,14 @@ select.orderby:hover {
 .product-attributes-image-container .section-title {
   padding-bottom: 40px;
   text-align: center;
+}
+
+.product-attributes {
+  flex: 0 1 50%;
+}
+
+.product-image {
+  flex: 0 1 50%;
 }
 
 .custom-product-description {
@@ -455,6 +515,14 @@ select.orderby:hover {
 
 .color-walnut-color {
   background-color: #693f42;
+}
+
+.color-dark-green {
+  background-color: #424242;
+}
+
+.color-pale-blue-velvet {
+  background-color: #4FC3F7;
 }
 
 .variations {
@@ -831,9 +899,139 @@ select.orderby:hover {
   margin-bottom: 40px;
 }
 
+.product-add2cart.custom-product-add2cart {
+  display: flex !important;
+  margin: 10px 0;
+}
+
 /**
 * end Single Product
 */
+/**
+* Category page
+*/
+.desc-category {
+  margin: 50px 0;
+}
+.desc-category p:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+/**
+* end Category page
+*/
+/**
+* modal order cart
+*/
+.custom-modal-cart {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.custom-modal-cart.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.custom-modal-cart__modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  max-width: 600px;
+  border-radius: 4px;
+  background-color: var(--light-grey-color);
+}
+.custom-modal-cart__modal .table-responsive {
+  margin: 40px 0 20px;
+}
+.custom-modal-cart__modal table tr td {
+  padding: 5px;
+  border: 1px solid var(--gray-color);
+}
+.custom-modal-cart__modal table tr td .fa {
+  color: var(--red-color);
+  font-size: 26px;
+}
+.custom-modal-cart__modal table tr td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+.custom-modal-cart__modal .close {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  border: 1px solid var(--accent-color);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+.custom-modal-cart__modal .close:hover {
+  background-color: var(--gray-color);
+}
+.custom-modal-cart__modal .woocommerce-mini-cart__buttons {
+  display: none;
+}
+.custom-modal-cart__modal .custom-modal-cart__content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 40px;
+}
+.custom-modal-cart__modal .woocommerce-mini-cart__total .woocommerce-Price-amount {
+  font-size: 24px;
+}
+
+.custom-ajax-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  display: none;
+}
+
+.custom-ajax-loader img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/**
+* end modal order cart
+*/
+/**
+* Filter Everything
+*/
+.wpc-filters-range-inputs input[type=number] {
+  border: 1px solid var(--accent-color);
+  outline: none;
+  padding: 4px;
+  border-radius: 4px;
+}
+.wpc-filters-range-inputs input[type=number]:focus {
+  border: 2px solid var(--contrast-color);
+}
+
 .header {
   padding: 10px 0;
 }

@@ -248,6 +248,33 @@ remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_re
 
 remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
 
+/**
+ * add description after content - page category
+ */
+remove_action('woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10);
+add_action('woocommerce_after_shop_loop', function() {
+
+    if (is_product_category() || is_shop()) { ?>
+
+<div class="desc-category">
+	<?php echo woocommerce_taxonomy_archive_description(); ?>
+</div>
+
+<?php
+    }
+	
+}, 10);
+
+/**
+ * Hide woocommerce notices page category
+ */
+function hide_woocommerce_notices_on_category() {
+    if (is_product_category()) {
+        remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10);
+    }
+}
+add_action('wp', 'hide_woocommerce_notices_on_category');
+
 
 
 

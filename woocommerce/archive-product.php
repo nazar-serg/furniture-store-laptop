@@ -2,8 +2,9 @@
 
 <?php
 do_action( 'woocommerce_before_main_content' );
+$custom_class_for_product = (is_tax('product_cat')) ? 'products-wrapper' : 'products-wrapper-no-flex';
 ?>
-<div class="products-wrapper">
+<div class="<?php echo esc_attr($custom_class_for_product); ?>">
 <?php if ( !is_search() ): ?>
 <div class="sidebar-column">
 	<?php do_action( 'woocommerce_sidebar' ); ?>
@@ -42,6 +43,22 @@ do_action( 'woocommerce_before_main_content' );
 					do_action( 'woocommerce_no_products_found' );
 				}
 			?>
+
+			<div class="custom-modal-cart">
+				<div class="custom-modal-cart__modal">
+				<div class="custom-ajax-loader">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/ripple.svg" alt="">
+					</div>
+				<span class="close">×</span>
+					<div class="custom-modal-cart__your-order">
+						<?php woocommerce_mini_cart(); ?>
+						</div>
+						<div class="custom-modal-cart__content">
+							<a class="custom-modal-cart__btn-continue-shopping button"><?php esc_html_e('Продовжити покупки', 'furniturestore'); ?></a>
+							<a class="custom-modal-cart__btn-order button" href="<?php echo wc_get_checkout_url(); ?>"><?php esc_html_e('Оформити замовлення', 'furniturestore'); ?></a>
+						</div>
+				</div>
+			</div>
 
 </div><!-- ./products-column-->
 </div><!--./products-wrapper-->

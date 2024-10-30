@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const colorOptions = document.querySelectorAll('.color-option');
     const colorSelect = document.querySelector('form.variations_form');
     const productImage = document.querySelector('.woocommerce-product-gallery__image img');
-    const addToCartButton = document.querySelector('.single_add_to_cart_button');
+    const addToCartButton = document.querySelector('.wc-variation-selection-needed');
 
     colorOptions.forEach(option => {
         option.addEventListener('click', function () {

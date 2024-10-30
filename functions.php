@@ -28,7 +28,7 @@ function furniturestore_theme_enqueue_styles() {
     
     wp_localize_script('furniturestore-main-js', 'reviewStrings', array(
         'leaveReview' => esc_html__('Залишити відгук', 'furniturestore'),
-        'hideReview' => esc_html__('Приховати відгук', 'furniturestore')
+        'hideReview' => esc_html__('Приховати', 'furniturestore')
     ));
 
     wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
@@ -61,6 +61,23 @@ function add_additional_class_on_li($classes, $item, $args) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+
+/**
+ * Custom sidebar for shop
+ */
+add_action( 'widgets_init', function() {
+
+    register_sidebar( array(
+        'name'          => __('Custom Sidebar', 'furniturestore'),
+        'id'            => 'sidebar-1',
+        'description'   => __('This is a custom sidebar.', 'furniturestore'),
+        'before_widget' => '<div class="widget custom-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ));
+    
+} );
 
 
 

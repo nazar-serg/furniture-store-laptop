@@ -3583,6 +3583,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 54:
+/***/ (() => {
+
+document.addEventListener('DOMContentLoaded', function() {
+    const buttonCard = document.querySelector('.ajax_add_to_cart');
+    const modalCart = document.querySelector('.custom-modal-cart');
+    const close = document.querySelector('.custom-modal-cart__modal .close');
+    const continueShopping = document.querySelector('.custom-modal-cart__btn-continue-shopping');
+    const loader = document.querySelector('.custom-ajax-loader');
+    
+    buttonCard.addEventListener('click', function() {
+        modalCart.classList.add('active');
+        document.body.classList.add('no-scroll');
+
+        //loader modal
+        loader.style.display = 'block';
+
+        setTimeout(() => {
+            loader.style.display = 'none    ';
+        }, 2000);
+    });
+
+    close.addEventListener('click', function() {
+        modalCart.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+
+    continueShopping.addEventListener('click', function() {
+        modalCart.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+
+});
+
+/***/ }),
+
 /***/ 419:
 /***/ (() => {
 
@@ -3707,7 +3743,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const colorOptions = document.querySelectorAll('.color-option');
     const colorSelect = document.querySelector('form.variations_form');
     const productImage = document.querySelector('.woocommerce-product-gallery__image img');
-    const addToCartButton = document.querySelector('.single_add_to_cart_button');
+    const addToCartButton = document.querySelector('.wc-variation-selection-needed');
 
     colorOptions.forEach(option => {
         option.addEventListener('click', function () {
@@ -3821,6 +3857,9 @@ document.addEventListener('DOMContentLoaded', function () {
 /* harmony import */ var _js_search_container_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_js_search_container_js__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _js_review_form_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(171);
 /* harmony import */ var _js_review_form_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_js_review_form_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _js_modal_cart_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(54);
+/* harmony import */ var _js_modal_cart_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_js_modal_cart_js__WEBPACK_IMPORTED_MODULE_10__);
+
 
 
 

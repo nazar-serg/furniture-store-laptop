@@ -8,6 +8,7 @@ import './js/variation-product.js';
 import './js/product-image.js';
 import './js/search-container.js';
 import './js/review-form.js';
+import './js/modal-cart.js';
 import './scss/main.scss';
 
 
