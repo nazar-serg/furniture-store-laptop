@@ -112,6 +112,14 @@ add_action('woocommerce_single_product_summary', function () {
     <?php }
 }, 7);
 
+//remove alert variation
+function disable_wc_add_to_cart_variation_script() {
+    if ( is_product() ) { 
+        wp_deregister_script( 'wc-add-to-cart-variation' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'disable_wc_add_to_cart_variation_script', 999 );
+
 // Убираем вкладки и выводим описание и отзывы
 add_filter('woocommerce_product_tabs', 'custom_remove_product_tabs_layout', 98);
 
@@ -274,6 +282,38 @@ function hide_woocommerce_notices_on_category() {
     }
 }
 add_action('wp', 'hide_woocommerce_notices_on_category');
+
+
+/**
+ * Check if the product is in stock
+ */
+
+ add_action('woocommerce_single_product_summary', function() {
+    global $product;
+
+    if ($product->is_in_stock()) {
+        $stock_quantity = $product->get_stock_quantity();
+
+        if ($stock_quantity > 0) {
+            echo '<p class="custom-stock in-stock"><i class="fa fa-check" aria-hidden="true"></i>' . esc_html__('В наличии', 'furniturestore') . '</p>';
+        } else {
+            echo '<p class="custom-stock out-of-stock">' . esc_html__('Нет в наличии', 'furniturestore') . '</p>';
+        }
+    } else {
+        echo '<p class="custom-stock out-of-stock">' . esc_html__('Нет в наличии', 'furniturestore') . '</p>';
+    }
+ }, 4);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

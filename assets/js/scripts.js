@@ -3745,9 +3745,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const productImage = document.querySelector('.woocommerce-product-gallery__image img');
     const addToCartButton = document.querySelector('.wc-variation-selection-needed');
 
+    if (colorOptions.length > 0) {
+        const firstOption = colorOptions[0];
+        firstOption.classList.add('active');
+
+        const variationId = firstOption.getAttribute('data-variation-id');
+        const imageUrl = firstOption.getAttribute('data-image');
+
+        colorSelect.querySelector('input[name="variation_id"]').value = variationId;
+
+        if (productImage && imageUrl) {
+            productImage.src = imageUrl;
+            productImage.srcset = imageUrl;
+        }
+    }
+
     colorOptions.forEach(option => {
         option.addEventListener('click', function () {
-            
             colorOptions.forEach(opt => opt.classList.remove('active'));
             this.classList.add('active');
 
@@ -3772,7 +3786,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
 
 
 /***/ })
@@ -3966,6 +3979,7 @@ jQuery(document).ready(function($) {
             $('#main-product-image').attr('href', newImageUrl); // Обновляем ссылку для лайтбокса
         });
     });
+    
 });
 
 

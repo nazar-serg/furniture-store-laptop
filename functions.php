@@ -79,8 +79,6 @@ add_action( 'widgets_init', function() {
     
 } );
 
-
-
 require_once(get_template_directory() . '/incs/woocommerce-hooks.php');
 require_once(get_template_directory() . '/incs/class-awp-menu-walker.php');
 require_once(get_template_directory() . '/incs/shortcodes.php');

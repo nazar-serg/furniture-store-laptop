@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    position: relative;
 	.btn-custom-class-product-card {
 		text-align: center;
 		margin-top: 10px;
@@ -21,9 +22,10 @@
 		}
 	}
 	.price {
-		color: var(--accent-color);
+		color: var(--red-color);
 		font-size: 18px;
 		line-height: 22px;
+        font-weight: 500;
 		margin-top: auto;
 	}
 }
@@ -53,6 +55,7 @@
 	padding: 10px 0;
 	margin: 10px 0 20px;
 }
+
 //Shop page
 .added_to_cart {
     display: none;
@@ -175,12 +178,25 @@ select.orderby:hover {
 	&__body {
 		display: flex;
 		gap: 40px;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
 	}
 	
 	&__image {
 		flex: 0 1 40%;
 		max-width: 500px;
 		overflow: hidden;
+        @media (max-width: 768px) {
+            max-width: 100%;;
+        }
+        img {
+            @media (max-width: 768px) {
+                width: 100%;
+                height: 300px;
+                object-fit: contain;
+            }
+        }
 	}
 	&__info {
 		flex: 0 1 60%;
@@ -245,6 +261,10 @@ select.orderby:hover {
 .woocommerce-variation-add-to-cart {
 	display: flex;
 	margin: 10px 0;
+    @media (max-width: 480px) {
+        flex-direction: column;
+        row-gap: 20px;
+    }
 }
 .product-attributes-image-container {
 	display: flex;
@@ -258,15 +278,27 @@ select.orderby:hover {
 		padding-bottom: 40px;
 		text-align: center;
 	}
+    @media (max-width: 768px) {
+        flex-direction: column;
+        margin: 40px 0
+    }
 }
 .product-attributes {
     flex: 0 1 50%;
 }
 .product-image {
     flex: 0 1 50%;
+    img {
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
 }
 .custom-product-description {
 	margin-bottom: 80px;
+    @media (max-width: 768px) {
+        margin-bottom: 40px;
+    }
 	.section-title {
 		padding-bottom: 20px;
 	}
@@ -328,6 +360,7 @@ select.orderby:hover {
 
 .color-option.active {
     border-color: #000;
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .color-natural-color {
@@ -347,7 +380,7 @@ select.orderby:hover {
 }
 
 .variations {
-	display: none;
+    display: none;
 }
 
 /**
@@ -404,6 +437,13 @@ select.orderby:hover {
 	justify-content: space-between;
 	gap: 40px;
 	margin: 80px 0;
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 40px 0;
+    }
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 	&__header {
 		display: flex;
 		align-items: center;
@@ -705,7 +745,6 @@ select.orderby:hover {
 * upsells
 */
 .featured-products-list {
-	margin-bottom: 100px;
 	.section-title {
 		margin-bottom: 40px;
 	}
@@ -714,6 +753,18 @@ select.orderby:hover {
 .product-add2cart.custom-product-add2cart {
     display: flex!important;
 	margin: 10px 0;
+}
+
+.custom-stock {
+    .fa {
+        font-size: 18px;
+        color: var(--red-color);
+        margin-right: 4px;
+    }
+}
+.custom-stock.out-of-stock {
+    color: var(--red-color);
+    font-weight: 500;
 }
 
 /**

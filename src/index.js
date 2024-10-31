@@ -105,6 +105,7 @@ jQuery(document).ready(function($) {
             $('#main-product-image').attr('href', newImageUrl); // Обновляем ссылку для лайтбокса
         });
     });
+    
 });
 
 
