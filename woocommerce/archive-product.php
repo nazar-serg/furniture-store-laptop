@@ -2,7 +2,7 @@
 
 <?php
 do_action( 'woocommerce_before_main_content' );
-$custom_class_for_product = (is_tax('product_cat')) ? 'products-wrapper' : 'products-wrapper-no-flex';
+$custom_class_for_product = (is_tax('product_cat')) || is_shop() ? 'products-wrapper' : 'products-wrapper-no-flex';
 ?>
 <div class="<?php echo esc_attr($custom_class_for_product); ?>">
 <?php if ( !is_search() ): ?>

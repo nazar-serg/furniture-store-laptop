@@ -277,7 +277,7 @@ add_action('woocommerce_after_shop_loop', function() {
  * Hide woocommerce notices page category
  */
 function hide_woocommerce_notices_on_category() {
-    if (is_product_category()) {
+    if (is_product_category() || is_shop()) {
         remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10);
     }
 }
@@ -295,14 +295,41 @@ add_action('wp', 'hide_woocommerce_notices_on_category');
         $stock_quantity = $product->get_stock_quantity();
 
         if ($stock_quantity > 0) {
-            echo '<p class="custom-stock in-stock"><i class="fa fa-check" aria-hidden="true"></i>' . esc_html__('В наличии', 'furniturestore') . '</p>';
+            echo '<p class="custom-stock in-stock"><i class="fa fa-check" aria-hidden="true"></i>' . esc_html__('В наявності', 'furniturestore') . '</p>';
         } else {
-            echo '<p class="custom-stock out-of-stock">' . esc_html__('Нет в наличии', 'furniturestore') . '</p>';
+            echo '<p class="custom-stock out-of-stock">' . esc_html__('Немає у наявності', 'furniturestore') . '</p>';
         }
     } else {
-        echo '<p class="custom-stock out-of-stock">' . esc_html__('Нет в наличии', 'furniturestore') . '</p>';
+        echo '<p class="custom-stock out-of-stock">' . esc_html__('Немає у наявності', 'furniturestore') . '</p>';
     }
  }, 4);
+
+/**
+ * Breadcrumbs
+ */
+ function custom_breadcrumbs() {
+    echo '<ul class="breadcrumbs page-breadcrumbs">';
+    
+    if (!is_home()) {
+        echo '<li><a href="' . home_url() . '">Головна</a></li>';
+        if (is_category() || is_single()) {
+            echo '<li>';
+            the_category(' </li><li> ');
+            if (is_single()) {
+                echo '</li><li>';
+                the_title();
+                echo '</li>';
+            }
+        } elseif (is_page()) {
+            echo '<li>';
+            echo the_title();
+            echo '</li>';
+        }
+    }
+    
+    echo '</ul>';
+
+
 
 
 
