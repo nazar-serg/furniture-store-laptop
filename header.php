@@ -12,6 +12,9 @@
 
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
+	<a href="#" id="scrollTopBtn">
+    	<i class="fa fa-angle-up" aria-hidden="true"></i>
+	</a>
 	<div class="wrapper">
 		<header class="header">
 			<div class="base-container">

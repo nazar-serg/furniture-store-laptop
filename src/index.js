@@ -9,6 +9,7 @@ import './js/product-image.js';
 import './js/search-container.js';
 import './js/review-form.js';
 import './js/modal-cart.js';
+import './js/btn-to-up.js';
 import './scss/main.scss';
 
 

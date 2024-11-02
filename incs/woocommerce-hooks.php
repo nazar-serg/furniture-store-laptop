@@ -328,8 +328,27 @@ add_action('wp', 'hide_woocommerce_notices_on_category');
     }
     
     echo '</ul>';
+ }
 
+ /**
+ * remove fields in checkout page
+ */
+ add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 
+function custom_override_checkout_fields($fields) {
+    // Удаляем ненужные поля
+    unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_postcode']);
+    unset($fields['billing']['billing_state']);
+    unset($fields['billing']['billing_address_2']);
+
+	
+    $fields['billing']['billing_address_1']['required'] = false;
+    $fields['billing']['billing_country']['required'] = false;
+    $fields['billing']['billing_email']['required'] = false;
+    
+    return $fields;
+}
 
 
 

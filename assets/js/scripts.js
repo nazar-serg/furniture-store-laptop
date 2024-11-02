@@ -3463,6 +3463,30 @@
 
 /***/ }),
 
+/***/ 566:
+/***/ (() => {
+
+window.onscroll = function() {
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = 'block';
+    } else {
+        scrollTopBtn.style.display = 'none';
+    }
+
+    scrollTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    });
+
+};
+
+/***/ }),
+
 /***/ 43:
 /***/ (() => {
 
@@ -3872,6 +3896,9 @@ document.addEventListener('DOMContentLoaded', function () {
 /* harmony import */ var _js_review_form_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_js_review_form_js__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _js_modal_cart_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(54);
 /* harmony import */ var _js_modal_cart_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_js_modal_cart_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _js_btn_to_up_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(566);
+/* harmony import */ var _js_btn_to_up_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_js_btn_to_up_js__WEBPACK_IMPORTED_MODULE_11__);
+
 
 
 

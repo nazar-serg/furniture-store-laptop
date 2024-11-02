@@ -86,7 +86,7 @@ q::after {
 :root {
   --bg-color: #fff;
   --text-color: #000;
-  --accent-color: #605C53;
+  --accent-color: #1f1e1c;
   --contrast-color: #5a3d31;
   --gray-color: #ccc;
   --red-color: #ee6e73;
@@ -133,6 +133,28 @@ input[type=number]::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* button to up */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: none;
+  font-size: 28px;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--red-color);
+  border-radius: 50%;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  z-index: 10;
+}
+#scrollTopBtn:hover {
+  opacity: 0.5;
 }
 
 .button {
@@ -1295,11 +1317,11 @@ select.orderby:hover {
   display: flex;
   column-gap: 20px;
 }
-.checkout-page__wrapper__column-left {
-  flex: 0 1 70%;
+.checkout-page__column-left {
+  flex: 0 1 60%;
 }
-.checkout-page__wrapper__column-right {
-  flex: 0 1 30%;
+.checkout-page__column-right {
+  flex: 0 1 40%;
 }
 
 .woocommerce-billing-fields__field-wrapper,
@@ -1397,7 +1419,7 @@ select.orderby:hover {
 .cart-summary .product-name {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 .cart-summary .product-total {
   vertical-align: middle;
@@ -1543,8 +1565,347 @@ select.orderby:hover {
   border-color: var(--accent-color);
 }
 
+.woocommerce-billing-fields__field-wrapper .form-row:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.woocommerce-checkout-review-order-table .product-name-checkout {
+  text-align: left;
+}
+
+.form-check {
+  display: block;
+  margin-bottom: 0.125rem;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+}
+
+.form-check .wc_payment_methods .input-radio {
+  float: left;
+  margin-left: -1.5em;
+}
+
+.form-check-reverse {
+  padding-left: 0;
+  padding-right: 1.5em;
+  text-align: right;
+}
+
+.form-check-reverse .wc_payment_methods .input-radio {
+  float: right;
+  margin-left: 0;
+  margin-right: -1.5em;
+}
+
+.wc_payment_methods {
+  margin: 15px 0;
+}
+.wc_payment_methods p {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+.wc_payment_methods .wc_payment_method {
+  margin-bottom: 5px;
+}
+
+.woocommerce-terms-and-conditions-wrapper .validate-required {
+  margin-bottom: 15px;
+}
+
+.wc_payment_methods .input-radio {
+  --bs-form-check-bg: var(--bs-body-bg);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-form-check-bg);
+  background-image: var(--bs-form-check-bg-image);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid var(--accent-color);
+  flex-shrink: 0;
+  height: 1em;
+  margin-top: 0.25em;
+  -webkit-print-color-adjust: exact;
+  vertical-align: top;
+  width: 1em;
+  color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.wc_payment_methods .input-radio[type=checkbox] {
+  border-radius: 0.25em;
+}
+
+.wc_payment_methods .input-radio[type=radio] {
+  border-radius: 50%;
+}
+
+.wc_payment_methods .input-radio:active {
+  filter: brightness(90%);
+}
+
+.wc_payment_methods .input-radio:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  outline: 0;
+}
+
+.wc_payment_methods .input-radio:checked {
+  background-color: #5a3d31;
+  border-color: #5a3d31;
+}
+
+.wc_payment_methods .input-radio:checked[type=checkbox] {
+  --bs-form-check-bg-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E") ;
+}
+
+.wc_payment_methods .input-radio:checked[type=radio] {
+  --bs-form-check-bg-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='2' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.wc_payment_methods .input-radio[type=checkbox]:indeterminate {
+  background-color: #5a3d31;
+  border-color: #5a3d31;
+  --bs-form-check-bg-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3E%3C/svg%3E") ;
+}
+
+.wc_payment_methods .input-radio:disabled {
+  filter: none;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.wc_payment_methods .input-radio:disabled ~ .form-check-label, .wc_payment_methods .input-radio[disabled] ~ .form-check-label {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.woocommerce-shipping-totals .woocommerce-shipping-methods li {
+  text-align: left;
+}
+
 /**
 * end Checkout
+*/
+/**
+* thankyou page
+*/
+.woocommerce-order .woocommerce-thankyou-order-received {
+  margin-bottom: 25px;
+}
+.woocommerce-order .woocommerce-order-details__title {
+  margin-bottom: 15px;
+}
+
+.woocommerce-order-details .shop_table th, .woocommerce-order-details .shop_table td {
+  text-align: left;
+}
+
+/**
+* end thankyou page
+*/
+/**
+* account
+*/
+.account-form-login {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+}
+@media (max-width: 992px) {
+  .account-form-login {
+    flex-direction: column;
+  }
+}
+
+.woocommerce-form-register .woocommerce-privacy-policy-text {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 20px 0;
+}
+.woocommerce-form-register .woocommerce-privacy-policy-text .woocommerce-privacy-policy-link {
+  color: #2c2ccc;
+  transition: all 0.2s ease-in-out;
+}
+.woocommerce-form-register .woocommerce-privacy-policy-text .woocommerce-privacy-policy-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Общий стиль формы для входа и регистрации */
+.form-login-page, .form-registration-page,
+.form-login-page form, .form-registration-page form,
+.form-login-page .form-row, .form-registration-page .form-row {
+  flex: 0 1 50%;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+@media (max-width: 992px) {
+  .form-login-page, .form-registration-page,
+  .form-login-page form, .form-registration-page form,
+  .form-login-page .form-row, .form-registration-page .form-row {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.form-login-page .form-row:not(:last-child), .form-registration-page .form-row:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.woocommerce-password-strength.bad, .woocommerce-password-strength.short {
+  color: #b22222;
+  font-weight: 500;
+  margin: 2px 0;
+}
+
+.woocommerce-password-strength.good, .woocommerce-password-strength.strong {
+  color: #4f7942;
+  font-weight: 500;
+  margin: 2px 0;
+}
+
+/* Заголовок формы */
+.form-login-page h2.section-title, .form-registration-page h2.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Стиль меток (label) */
+.form-login-page .form-label, .form-registration-page .form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Стиль полей ввода (input) */
+.form-login-page input[type=text], .form-registration-page input[type=text],
+.form-login-page input[type=email], .form-registration-page input[type=email],
+.form-login-page input[type=password], .form-registration-page input[type=password] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.form-login-page input[type=text]:focus, .form-registration-page input[type=text]:focus,
+.form-login-page input[type=email]:focus, .form-registration-page input[type=email]:focus,
+.form-login-page input[type=password]:focus, .form-registration-page input[type=password]:focus {
+  border-color: #F07427;
+  outline: none;
+}
+
+/* Чекбокс "Remember me" и других элементов */
+.form-login-page .form-check-label, .form-registration-page .form-check-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-login-page .form-check-input, .form-registration-page .form-check-input {
+  margin-right: 8px;
+}
+
+/* Кнопки формы */
+.form-login-page button.woocommerce-button, .form-registration-page button.woocommerce-button {
+  width: 100%;
+  display: block;
+}
+
+/* Ссылка "Lost your password?" */
+.form-login-page .woocommerce-LostPassword, .form-registration-page .woocommerce-LostPassword {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.form-login-page .woocommerce-LostPassword a, .form-registration-page .woocommerce-LostPassword a {
+  color: #F07427;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.form-login-page .woocommerce-LostPassword a:hover, .form-registration-page .woocommerce-LostPassword a:hover {
+  color: #005a8c;
+}
+
+/* Основной стиль для чекбокса и текста */
+.form-check-label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Скрываем стандартный чекбокс */
+.form-check-input {
+  position: absolute;
+  opacity: 0;
+}
+
+/* Создаем кастомный чекбокс */
+.form-check-label .form-check-input + span {
+  position: relative;
+  padding-left: 30px;
+}
+
+/* Стиль для кастомного чекбокса перед текстом */
+.form-check-label .form-check-input + span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #F07427;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Отображаем галочку, если чекбокс отмечен */
+.form-check-label .form-check-input:checked + span::before {
+  background-color: #F07427;
+  border-color: #F07427;
+}
+
+/* Галочка при активном состоянии */
+.form-check-label .form-check-input:checked + span::after {
+  content: "✔";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.form-check-label:hover .form-check-input + span::before {
+  border-color: #F07427;
+}
+
+.form-check-label:hover .form-check-input:checked + span::before {
+  background-color: #F07427;
+}
+
+/**
+* end account
 */
 .header {
   padding: 10px 0;

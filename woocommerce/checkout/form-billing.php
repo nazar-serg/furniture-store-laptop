@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php else : ?>
 
-	<h1 class="section-title h3"><span><?php esc_html_e( 'Billing details', 'woocommerce' ); ?></span></h1>
+	<h1 class="section-title"><span><?php esc_html_e( 'Billing details', 'woocommerce' ); ?></span></h1>
 
 	<?php endif; ?>
 
