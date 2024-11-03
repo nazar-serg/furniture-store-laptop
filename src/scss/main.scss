@@ -16,8 +16,9 @@
 @import "./blocks/about";
 @import "./blocks/articles";
 @import "./blocks/home-text";
+@import "./blocks/single-article";
+@import "./blocks/custom-breadcrumbs";
 @import "./blocks/footer";
-
 
 body {
     min-width: 320px;

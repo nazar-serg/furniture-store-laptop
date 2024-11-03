@@ -43,15 +43,6 @@
 		<?php echo do_shortcode('[woocommerce_categories]'); ?>
 	</div>
 </section>
-<section class="featured-products">
-	<div class="base-container">
-		<h2 class="featured-products__title title-h2">
-			<?php esc_html_e('Рекомендовані колекції', 'furniturestore'); ?>
-		</h2>
-
-		<?php echo do_shortcode('[furniturestore_hit_products]'); ?>
-	</div>
-</section>
 <section class="about">
 	<div class="about__wrapper">
 		<div class="about__image">
@@ -85,11 +76,13 @@
 		</div>
 	</div>
 </section>
-<section class="articles">
+<section class="featured-products">
 	<div class="base-container">
-		<h2 class="articles__title title-h2">
-			<?php esc_html_e('Статті', 'furniturestore'); ?>
+		<h2 class="featured-products__title title-h2">
+			<?php esc_html_e('Рекомендовані колекції', 'furniturestore'); ?>
 		</h2>
+
+		<?php echo do_shortcode('[furniturestore_hit_products]'); ?>
 	</div>
 </section>
 <section class="home-text">
@@ -103,6 +96,51 @@
 			<button class="show-more-btn button"><?php esc_html_e('Показати все', 'furniturestore'); ?></button>
 			<button class="show-less-btn button"><?php esc_html_e('Закрити', 'furniturestore'); ?></button>
 		</div>
+	</div>
+</section>
+<section class="articles">
+	<div class="base-container">
+		<h2 class="articles__title title-h2">
+			<?php esc_html_e('Статті', 'furniturestore'); ?>
+		</h2>
+			<?php
+				$args = array(
+					'post_type' => 'blog',
+					'posts_per_page' => 3,
+					'orderby' => 'date',
+					'order' => 'DESC'
+				);
+
+				$query = new WP_Query($args);
+
+				if ($query->have_posts()) : ?>
+					<div class="articles__wrapper">
+						<?php while ($query->have_posts()) : $query->the_post(); ?>
+							<div class="articles__item">
+								<?php if (has_post_thumbnail()) : ?>
+									<div class="articles__post-thumbnail">
+										<a href="<?php the_permalink(); ?>">
+											<?php the_post_thumbnail(); ?>
+										</a>
+									</div>
+								<?php endif; ?>
+
+									<div class="articles__post-info">
+										<span class="articles__post-data">
+											<?php echo get_the_date(); ?>
+										</span>
+										<h3 class="articles__post-title">
+											<a href="<?php the_permalink(); ?>">
+												<?php the_title(); ?>
+											</a>
+										</h3>
+									</div>
+							</div>
+						<?php endwhile; ?>
+					</div>
+				<?php
+				endif;
+			?>
 	</div>
 </section>
 <?php get_footer(); ?>

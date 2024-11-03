@@ -303,33 +303,7 @@ add_action('wp', 'hide_woocommerce_notices_on_category');
         echo '<p class="custom-stock out-of-stock">' . esc_html__('Немає у наявності', 'furniturestore') . '</p>';
     }
  }, 4);
-
-/**
- * Breadcrumbs
- */
- function custom_breadcrumbs() {
-    echo '<ul class="breadcrumbs page-breadcrumbs">';
-    
-    if (!is_home()) {
-        echo '<li><a href="' . home_url() . '">Головна</a></li>';
-        if (is_category() || is_single()) {
-            echo '<li>';
-            the_category(' </li><li> ');
-            if (is_single()) {
-                echo '</li><li>';
-                the_title();
-                echo '</li>';
-            }
-        } elseif (is_page()) {
-            echo '<li>';
-            echo the_title();
-            echo '</li>';
-        }
-    }
-    
-    echo '</ul>';
- }
-
+ 
  /**
  * remove fields in checkout page
  */

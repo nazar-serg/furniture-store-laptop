@@ -1,5 +1,5 @@
 <?php
-//all categories
+//all categories (Home page)
 function display_woocommerce_categories_with_images() {
     $args = array(
         'taxonomy'   => 'product_cat',

@@ -79,6 +79,48 @@ add_action( 'widgets_init', function() {
     
 } );
 
+/**
+ * Breadcrumbs
+ */
+function custom_breadcrumbs() {
+
+    $separator = ' / ';
+    $home_title = esc_html('Главная', 'furniturestore');
+    echo '<nav class="custom-breadcrumbs">';
+
+    echo '<a href="' . home_url() . '">' . $home_title . '</a>' . $separator;
+
+    if (is_post_type_archive('blog')) {
+        echo '<span>' . esc_html('Блог', 'furniturestore') . '</span>';
+
+    } elseif (is_singular('blog')) {
+        echo '<a href="' . get_post_type_archive_link('blog') . '">' . esc_html('Блог', 'furniturestore') . '</a>' . $separator;
+        echo '<span>' . get_the_title() . '</span>';
+
+    } elseif (is_page()) {
+        global $post;
+        if ($post->post_parent) {
+            $ancestors = get_post_ancestors($post->ID);
+            $ancestors = array_reverse($ancestors);
+            foreach ($ancestors as $ancestor) {
+                echo '<a href="' . get_permalink($ancestor) . '">' . get_the_title($ancestor) . '</a>' . $separator;
+            }
+        }
+        echo '<span>' . get_the_title() . '</span>';
+
+    } elseif (is_search()) {
+        echo '<span>' . esc_html('Результати пошуку:', 'furniturestore') . " " . get_search_query() . '</span>';
+
+    } elseif (is_404()) {
+        echo '<span>' . esc_html('Помилка 404', 'furniturestore') . '</span>';
+    }
+
+    echo '</nav>';
+}
+
+
+
+require_once(get_template_directory() . '/incs/cpt.php');
 require_once(get_template_directory() . '/incs/woocommerce-hooks.php');
 require_once(get_template_directory() . '/incs/class-awp-menu-walker.php');
 require_once(get_template_directory() . '/incs/shortcodes.php');
