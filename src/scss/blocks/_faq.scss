@@ -1,0 +1,67 @@
+.faq {
+    padding-bottom: 80px;
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        @media (max-width: 992px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    &__image {
+        img {
+            @media (max-width: 992px) {
+                height: 300px;
+                object-fit: cover;
+            }  
+        }
+    }
+    &__title {
+        font-size: clamp(24px, 5vw, 40px);
+        line-height: clamp(28px, 6vw, 48px);
+        margin-bottom: 40px;
+    }
+    &__accordion {
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    &__item {
+        border-bottom: 1px solid #ddd;
+        border-radius: 4px;
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: var(--light-grey-color);
+        cursor: pointer;
+        transition: background-color .3s;
+        &.active {
+            .arrow {
+                transform: rotate(180deg);
+            }
+        }
+        &:hover {
+            background-color: var(--gray-color);
+        }
+    }
+    &__content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding: 0 20px;
+        background-color: #fff;
+        p {
+            margin: 10px 0;
+        }
+    }
+    .arrow {
+        font-size: 20px;
+        transition: transform 0.4s ease;    
+    }
+}

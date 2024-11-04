@@ -159,7 +159,7 @@ function custom_display_product_description_and_reviews() {
         echo '</div>';
     }
 
-    echo '<div class="product-image">';
+    echo '<div class="product-image animation-gsap">';
     if (has_post_thumbnail($product->get_id())) {
         echo get_the_post_thumbnail($product->get_id(), 'full'); 
     }

@@ -1,0 +1,9 @@
+.animation-gsap {
+    position: relative;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+}

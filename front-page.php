@@ -45,7 +45,7 @@
 </section>
 <section class="about">
 	<div class="about__wrapper">
-		<div class="about__image">
+		<div class="about__image animation-gsap">
 			<?php 
 				$image_about = get_field('home_about_image');
 				$size = 'full';

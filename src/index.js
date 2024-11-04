@@ -1,6 +1,7 @@
 import AOS from 'aos';
 import 'owl.carousel';
 import './js/menu';
+import './js/animation.js';
 import './js/scripttotop';
 import './js/more-less-content.js';
 import './js/mini-cart.js';
@@ -10,6 +11,7 @@ import './js/search-container.js';
 import './js/review-form.js';
 import './js/modal-cart.js';
 import './js/btn-to-up.js';
+import './js/faq-accordion.js';
 import './scss/main.scss';
 
 

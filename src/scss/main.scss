@@ -10,6 +10,7 @@
 @import "./base/woo";
 //Blocks
 @import "./blocks/header";
+@import "./blocks/animation-gsap";
 @import "./blocks/hero";
 @import "./blocks/all-category";
 @import "./blocks/featured-products";
@@ -18,6 +19,9 @@
 @import "./blocks/home-text";
 @import "./blocks/single-article";
 @import "./blocks/custom-breadcrumbs";
+@import "./blocks/blog-page";
+@import "./blocks/faq";
+@import "./blocks/about-page";
 @import "./blocks/footer";
 
 body {
