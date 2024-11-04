@@ -1,0 +1,67 @@
+.customer-reviews {
+    padding-bottom: 80px;
+    &__title {
+        font-size: clamp(24px, 5vw, 40px);
+        line-height: clamp(28px, 6vw, 48px);
+        margin-bottom: 40px;
+    }
+    &__stars {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 4px;
+        img {
+            width: 16px!important;
+            height: 16px;
+        }
+    }
+    &__name {
+        font-size: clamp(18px, 5vw, 22px);
+        line-height: clamp(22px, 6vw, 26px);
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    &__item-wrapper {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+    }
+    &__info {
+        flex: 0 1 30%;
+    }
+    &__content {
+        flex: 0 1 70%;
+        background-color: var(--light-grey-color);
+        padding: 40px;
+        position: relative;
+        &::before {
+            content: "“";
+            font-size: 3rem;
+            color: var(--contrast-color);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        &::after {
+            content: "”";
+            font-size: 3rem;
+            color: var(--contrast-color);
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
+    .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+        background: #F07427;
+    }
+    .owl-theme .owl-dots .owl-dot span {
+        width: 20px;
+        height: 20px;
+    }
+    
+}

@@ -3487,6 +3487,26 @@ window.onscroll = function() {
 
 /***/ }),
 
+/***/ 124:
+/***/ (() => {
+
+jQuery(document).ready(function($) {
+
+    $(".customer-reviews__carousel").owlCarousel({
+     margin: 20,
+     items: 1,
+     nav: false,
+     loop: true,
+     dots: true,
+     autoplay: true,
+     autoplayTimeout: 5000,
+     autoplayHoverPause: true
+ });
+ 
+});
+
+/***/ }),
+
 /***/ 457:
 /***/ (() => {
 
@@ -13395,7 +13415,10 @@ var modal_cart = __webpack_require__(54);
 var btn_to_up = __webpack_require__(566);
 // EXTERNAL MODULE: ./src/js/faq-accordion.js
 var faq_accordion = __webpack_require__(457);
+// EXTERNAL MODULE: ./src/js/customer-reviews.js
+var customer_reviews = __webpack_require__(124);
 ;// ./src/index.js
+
 
 
 
