@@ -3499,7 +3499,7 @@ jQuery(document).ready(function($) {
      loop: true,
      dots: true,
      autoplay: true,
-     autoplayTimeout: 5000,
+     autoplayTimeout: 8000,
      autoplayHoverPause: true
  });
  
