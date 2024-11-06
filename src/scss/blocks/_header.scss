@@ -18,6 +18,33 @@
 }
 /*================================================================*/
 .navbar {
+    &__cart-link {
+        position: relative;
+    }
+    &__cart-icon {
+        svg {
+            width: 26px;
+            height: 26px;
+        }
+    }
+    &__counter-cart {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        .cart-badge {
+            width: 20px;
+            height: 20px;
+            background-color: #F07427;
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 14px;
+            text-align: center;
+            line-height: 20px;
+            font-weight: 500;
+            color: #fff;
+
+        }
+    }
     &__info {
         display: flex;
         align-items: center;

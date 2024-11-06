@@ -73,18 +73,17 @@
 								<?php if (! is_cart()): ?>
 								<div class="navbar__cart">
 									<a class="navbar__cart-link">
-									<img class="navbar__cart-icon"
-										src="<?php echo get_template_directory_uri() . '/assets/images/icon/shopping-cart.png'; ?>"
-										alt="Icon cart">
-									<span class="navbar__conuter-cart">
-									<span class="cart-badge">
-										<?php echo WC()->cart->get_cart_contents_count(); ?>
-									</span>
-									</span>
+										<div class="navbar__cart-icon">
+											<?php echo file_get_contents(get_template_directory() . '/assets/images/icon/icon-shopping-cart.svg'); ?>
+										</div>
+										<span class="navbar__counter-cart">
+											<span class="cart-badge">
+												<?php echo WC()->cart->get_cart_contents_count(); ?>
+											</span>
+										</span>
 									</a>
-								</a>
-								<?php endif; ?>
-							</div>
+								</div>
+							<?php endif; ?>
 							<div class="custom-mini-cart">
 							<span class="close-btn">&times;</span>
 								<?php woocommerce_mini_cart(); ?>

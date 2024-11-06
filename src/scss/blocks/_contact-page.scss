@@ -1,0 +1,13 @@
+.contact-page {
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+    }
+    &__info {
+        flex: 0 1 40%;
+    }
+    &__form {
+        flex: 0 1 60%;
+    }
+}

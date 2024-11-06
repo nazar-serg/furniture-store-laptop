@@ -2157,6 +2157,30 @@ select.orderby:hover {
 }
 
 /*================================================================*/
+.navbar__cart-link {
+  position: relative;
+}
+.navbar__cart-icon svg {
+  width: 26px;
+  height: 26px;
+}
+.navbar__counter-cart {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+.navbar__counter-cart .cart-badge {
+  width: 20px;
+  height: 20px;
+  background-color: #F07427;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 500;
+  color: #fff;
+}
 .navbar__info {
   display: flex;
   align-items: center;
@@ -3162,6 +3186,18 @@ select.orderby:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.contact-page__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+.contact-page__info {
+  flex: 0 1 40%;
+}
+.contact-page__form {
+  flex: 0 1 60%;
 }
 
 .footer {
