@@ -1,5 +1,8 @@
 .single-article {
     padding-bottom: 80px;
+    @media (max-width: 768px) {
+        padding-bottom: 40px;
+    }
     &__title {
         font-size: clamp(24px, 5vw, 40px);
         line-height: clamp(28px, 6vw, 48px);
@@ -88,6 +91,9 @@
     }
     &__other-posts {
         padding-top: 80px;
+        @media (max-width: 768px) {
+            padding-top: 40px;
+        }
     }
     &__title-other-posts {
         margin-bottom: 40px;

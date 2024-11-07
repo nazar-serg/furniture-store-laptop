@@ -23,7 +23,7 @@
             $image_id = get_sub_field('image');
 
             if ($image_id) : ?>
-            <div class="single-article__content-image">
+            <div class="single-article__content-image animation-gsap">
                 <?php echo wp_get_attachment_image( $image_id, 'full' ); ?>
             </div>
             <?php endif; ?>
