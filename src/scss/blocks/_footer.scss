@@ -1,3 +1,115 @@
 .footer {
+    background-color: #eff1f5;
+    padding: 50px 0;
+    color: var(--accent-color);
     margin-top: auto;
+    @media (max-width: 480px) {
+        padding: 25px 0;
+    }
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 40px;
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 20px;
+        }
+        @media (max-width: 576px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
 }
+
+.footer h4 {
+    color: var(--accent-color);
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.footer a:hover {
+    color: var(--contrast-color);
+}
+
+.footer-icons {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    font-size: 20px;
+}
+
+.footer__logo {
+    margin-bottom: 20px;
+    img {
+        width: auto;
+        height: 150px;
+    }
+    @media (max-width: 576px) {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.footer__social {
+    ul {
+        display: flex;
+        align-items: center;
+        column-gap: 12px;
+        li {
+            a {
+                font-size: 22px;
+                &:hover {
+                    color: var(--contrast-color);
+                }
+            }
+        }
+    }
+     @media (max-width: 576px) {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.footer__menu, 
+.footer__info {
+    ul {
+        li {
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    @media (max-width: 576px) {
+        text-align: center;
+    }
+}
+
+.footer__contacts {
+    ul {
+        margin-bottom: 20px;
+        li {
+            list-style: none;
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    @media (max-width: 576px) {
+        text-align: center;
+    }
+}
+
+.footer__copyright {
+    border-top: 1px solid var(--gray-color);
+    padding-top: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+

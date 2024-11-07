@@ -4,12 +4,21 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 20px;
+		@media (max-width: 768px) {
+			flex-direction: column;
+			@media (max-width: 768px) {
+				padding: 40px 0;
+			}
+		}
 	}
 	&__content {
 		flex: 0 1 40%;
 	}
 	&__image {
 		flex: 0 1 60%;
+		@media (max-width: 768px) {
+			display: none;
+		}
 	}
 	&__title {
 		font-size: clamp(24px, 5vw, 40px);

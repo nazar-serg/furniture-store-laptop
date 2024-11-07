@@ -1,13 +1,46 @@
 .contact-page {
+    padding-bottom: 80px;
     &__wrapper {
         display: flex;
         justify-content: space-between;
         gap: 40px;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+    &__title {
+        margin-bottom: 40px;
     }
     &__info {
         flex: 0 1 40%;
     }
     &__form {
         flex: 0 1 60%;
+    }
+    &__item {
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+    &__title-item {
+        font-size: 24px;
+        line-height: 1.2em;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    &__text {
+        color: #a1a1a1;
+        font-size: 18px;
+        line-height: 1.2em;
+        transition: color .3s ease-in-out;
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
+        a {
+            &:hover {
+                color: var(--contrast-color);
+            }
+        }
+        
     }
 }

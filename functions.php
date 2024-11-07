@@ -10,6 +10,8 @@ add_action( 'after_setup_theme', function() {
     register_nav_menus(
         array(
             'header-menu' => __( 'Header menu', 'furniturestore' ),
+            'footer-menu' => __( 'Footer menu', 'furniturestore' ),
+            'footer-menu-info' => __( 'Footer menu info', 'furniturestore' ),
         )
         );
 });
