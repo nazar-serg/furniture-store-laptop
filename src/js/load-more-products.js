@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let count = 0;
 
         for (let i = visibleCount; i < productCards.length && count < increment; i++) {
-            productCards[i].style.display = 'grid';
+            productCards[i].style.display = 'flex';
             count++;
         }
 

@@ -128,7 +128,7 @@
     display: none;
 }
 .products-row .product-card-item:nth-child(-n+6) {
-    display: grid;
+    display: flex;
 }
 .load-more-btn {
     background-color: #f07427;
