@@ -20,7 +20,7 @@ $custom_class_for_product = (is_tax('product_cat')) || is_shop() ? 'products-wra
 	<div class="products-header">
 		<?php do_action( 'woocommerce_before_shop_loop' ); ?>
 	</div>
-
+					
 	<?php
 
 					woocommerce_product_loop_start();

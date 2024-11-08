@@ -13,6 +13,7 @@ import './js/modal-cart.js';
 import './js/btn-to-up.js';
 import './js/faq-accordion.js';
 import './js/customer-reviews.js';
+import './js/load-more-products.js';
 import './scss/main.scss';
 
 

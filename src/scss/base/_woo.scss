@@ -123,6 +123,18 @@
     }
 }
 
+/*Кнопка загрузить больше товаров*/    
+.products-row .product-card-item {
+    display: none;
+}
+.products-row .product-card-item:nth-child(-n+6) {
+    display: grid;
+}
+.load-more-btn {
+    background-color: #f07427;
+    display: block;
+    margin: 50px auto;
+}
 /* Стили для select */
 select.orderby {
     appearance: none;
@@ -423,6 +435,14 @@ select.orderby:hover {
 
 .color-black {
     background-color: #000;
+}
+
+.color-green {
+    background-color: #4F7942;
+}
+
+.color-orange {
+    background-color: orange;
 }
 
 .variations {
