@@ -3845,6 +3845,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /***/ }),
 
+/***/ 325:
+/***/ (() => {
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const header = document.querySelector('.header');
+    //let lastScrollTop = 0;
+
+    function onScroll() {
+        let currentScroll = window.scrollY;
+
+        if (currentScroll > 100) {
+            header.classList.add('fixed-header');
+        } else {
+            header.classList.remove('fixed-header');
+        }
+
+        //lastScrollTop  = currentScroll <= 0 ? 0 : currentScroll;
+    }
+
+    window.addEventListener('scroll', onScroll);
+});
+
+/***/ }),
+
 /***/ 577:
 /***/ (() => {
 
@@ -3896,6 +3921,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+/***/ }),
+
+/***/ 891:
+/***/ (() => {
+
+jQuery(document).ready(function($) {
+
+    $('.withlist-icon').on('click', function() {
+        let $this = $(this);
+        let productId = $this.data('id');
+        let ajaxLoader = $this.closest('.product-card-item').find('.ajax-loader');
+        console.log(productId);
+
+        $.ajax({
+            url: furniturestore_wishlist_object.url,
+            type: 'POST',
+            data: {
+                action: 'furniturestore_wishlist_action',
+                nonce: furniturestore_wishlist_object.nonce,
+                product_id: productId,
+            },
+
+            beforeSend: function() {
+                ajaxLoader.fadeIn();
+            },
+            success: function(res) {
+                console.log(res);
+                ajaxLoader.fadeOut();
+            },
+            error: function() {
+                ajaxLoader.fadeOut();
+                alert('Помилка при додаванні обраного товару');
+            }
+        });
+    });
+ 
+});
 
 /***/ })
 
@@ -13461,7 +13524,13 @@ var faq_accordion = __webpack_require__(457);
 var customer_reviews = __webpack_require__(124);
 // EXTERNAL MODULE: ./src/js/load-more-products.js
 var load_more_products = __webpack_require__(809);
+// EXTERNAL MODULE: ./src/js/sticky-header.js
+var sticky_header = __webpack_require__(325);
+// EXTERNAL MODULE: ./src/js/wishlist.js
+var wishlist = __webpack_require__(891);
 ;// ./src/index.js
+
+
 
 
 

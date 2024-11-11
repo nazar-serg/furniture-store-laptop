@@ -14,6 +14,8 @@ import './js/btn-to-up.js';
 import './js/faq-accordion.js';
 import './js/customer-reviews.js';
 import './js/load-more-products.js';
+import './js/sticky-header.js';
+import './js/wishlist.js';
 import './scss/main.scss';
 
 

@@ -10,6 +10,12 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 <div <?php wc_product_class( 'product-card-item', $product ); ?>>
+	<div class="withlist-icon in-withlist" data-id="<?php echo $product->get_id(); ?>">
+		<i class="fa fa-heart" aria-hidden="true"></i>
+	</div>
+	<div class="ajax-loader">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/ripple.svg" alt="icon loader">
+        </div>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -70,4 +76,4 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	?>
 	</div>
 	<!--./product-details-->
-</div>
+</div><!--./product-card-item-->

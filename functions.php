@@ -26,20 +26,36 @@ function furniturestore_theme_enqueue_styles() {
     
     wp_enqueue_script('fancybox', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), null, true);
     
-    wp_enqueue_script('furniturestore-main-js', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0.2', true);
+    wp_enqueue_script('furniturestore-main-js', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0.3', true);
     
     wp_localize_script('furniturestore-main-js', 'reviewStrings', array(
         'leaveReview' => esc_html__('Залишити відгук', 'furniturestore'),
         'hideReview' => esc_html__('Приховати', 'furniturestore')
     ));
 
+    wp_localize_script('furniturestore-main-js', 'furniturestore_wishlist_object', array(
+        'url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('furniturestore_wishlist_nonce'),
+    ));
+
     wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
     wp_enqueue_style('fancybox', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
     wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-    wp_enqueue_style('furniturestore-main-css', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.1', 'all');
+    wp_enqueue_style('furniturestore-main-css', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.3', 'all');
 }
 
 add_action('wp_enqueue_scripts', 'furniturestore_theme_enqueue_styles');
+
+/**
+ * Ajax for wishlist
+ */
+add_action('wp_ajax_furniturestore_wishlist_action', 'furniturestore_wishlist_action_cb');
+add_action('wp_ajax_nopriv_furniturestore_wishlist_action', 'furniturestore_wishlist_action_cb');
+
+function furniturestore_wishlist_action_cb() {
+    print_r($_POST);
+    wp_die();
+}
 
 
 /**

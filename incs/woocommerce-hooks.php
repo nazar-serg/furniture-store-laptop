@@ -327,6 +327,69 @@ function custom_override_checkout_fields($fields) {
 /**
  * Last viewed items
  */
+function set_last_viewed_product($product_id) {
+    $viewed_products = isset($_COOKIE['last_viewed_products']) ? json_decode($_COOKIE['last_viewed_products'], true) : [];
+
+    if (!in_array($product_id, $viewed_products)) {
+        array_unshift($viewed_products, $product_id);
+    }
+
+    $viewed_products = array_slice($viewed_products, 0, 5);
+
+    setcookie('last_viewed_products', json_encode($viewed_products), time() + 30 + DAY_IN_SECONDS, '/');
+
+}
+
+add_action('template_redirect', function() {
+    if (is_product()) {
+        global $post;
+        set_last_viewed_product($post->ID);
+    }
+});
+
+function get_last_viewed_products() {
+    $viewed_products = isset($_COOKIE['last_viewed_products']) ? json_decode($_COOKIE['last_viewed_products'], true) : null;
+    if ($viewed_products !== null) {
+
+        if (!empty($viewed_products)) {
+            $args = [
+                'post_type' => 'product',
+                'posts_per_page' => 8,
+                'post__in' => $viewed_products,
+                'orderby' => 'post__in',
+            ];
+
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) {
+                echo '<div class="base-container">';
+                echo '<div class="last-viewed-products">';
+                echo '<h2 class="last-viewed-products__title title-h2">';
+                esc_html_e('Переглянуті товари', 'furniturestore');
+                echo "</h2>";
+                echo '<div class="last-viewed-products__wrapper">';
+                while ($query->have_posts()) {
+                    $query->the_post();
+                
+                    wc_get_template_part('content', 'product');
+
+                }
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+            wp_reset_postdata();
+        }
+    }
+}
+
+add_action('woocommerce_after_main_content', 'get_last_viewed_products');
+
+/**
+ * Add to wishlist
+ */
+
+
 
 
 
