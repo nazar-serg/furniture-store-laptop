@@ -10,16 +10,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 <div <?php wc_product_class( 'product-card-item', $product ); ?>>
-	<!-- <div class="withlist-icon <?php //echo furniturestore_in_withlist($product->get_id()) ? 'in-wishlist' : ''; ?>" data-id="<?php //echo $product->get_id(); ?>">
-		<i class="fa fa-heart" aria-hidden="true"></i>
-	</div> -->
-	<div class="wishlist-message" style="display: none;"></div>
-	<button class="add-to-wishlist" data-product-id="<?php echo $product->get_id(); ?>">
-		<i class="fa fa-heart" aria-hidden="true"></i>
-	</button>
-	<div class="ajax-loader">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/ripple.svg" alt="icon loader">
-        </div>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -59,9 +49,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		woocommerce_template_loop_rating();
 			echo '<div class="furniture-rating-count"> <small>(' . $rating_cnt . ')</small> </div>';
 		echo '</div>';	
-	}
+	} 
 			
-
 	/**
 	 * Hook: woocommerce_after_shop_loop_item_title.
 	 *
