@@ -10,6 +10,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 <div <?php wc_product_class( 'product-card-item', $product ); ?>>
+	
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

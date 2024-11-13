@@ -33,14 +33,9 @@ function furniturestore_theme_enqueue_styles() {
         'hideReview' => esc_html__('Приховати', 'furniturestore')
     ));
 
-    // wp_localize_script('furniturestore-main-js', 'furniturestore_wishlist_object', array(
-    //     'url' => admin_url('admin-ajax.php'),
-    //     'nonce' => wp_create_nonce('furniturestore_wishlist_nonce'),
-    // ));
-
-    wp_localize_script('furniturestore-main-js', 'wishlist_params', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce'    => wp_create_nonce('furniturestore_wishlist_nonce'),
+    wp_localize_script('furniturestore-main-js', 'furniturestore_wishlist_object', [
+        'url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('furniturestore_wishlist_nonce')
     ]);
 
     wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
@@ -54,132 +49,151 @@ add_action('wp_enqueue_scripts', 'furniturestore_theme_enqueue_styles');
 /**
  * Ajax for wishlist
  */
-// В functions.php вашей темы
-function add_to_wishlist() {
-    // Проверка nonce
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'furniturestore_wishlist_nonce')) {
-        wp_send_json_error("Security check failed");
-        return;
+
+add_action('wp_ajax_furniturestore_wishlist_action', 'furniturestore_wishlist_action_cb');
+add_action('wp_ajax_nopriv_furniturestore_wishlist_action', 'furniturestore_wishlist_action_cb');
+
+function furniturestore_wishlist_action_cb() {
+
+    if ( ! isset($_POST['nonce'])) {
+        echo json_encode(['status' => 'error', 'answer' => __('Security error 1', 'furniturestore')]);
+        wp_die();
     }
 
-    // Проверка наличия product_id
-    if (!isset($_POST['product_id'])) {
-        wp_send_json_error("No product ID provided");
-        return;
+    if ( ! wp_verify_nonce($_POST['nonce'], 'furniturestore_wishlist_nonce') ) {
+        echo json_encode(['status' => 'error', 'answer' => __('Security error 2', 'furniturestore')]);
+        wp_die();
     }
 
-    $product_id = intval($_POST['product_id']);
-    $wishlist = isset($_COOKIE['wishlist']) ? json_decode(stripslashes($_COOKIE['wishlist']), true) : [];
+    $product_id = (int) $_POST['product_id'];
+    $product = wc_get_product($product_id);
 
-    // Добавляем product_id в список пожеланий, если его еще нет
-    if (!in_array($product_id, $wishlist)) {
+    if (!$product || $product->get_status() !== 'publish') {
+        echo json_encode(['status' => 'error', 'answer' => __('Error product', 'furniturestore')]);
+        wp_die();
+    }
+
+    $wishlist = furniturestore_get_withlist();
+    if (false !== ($key = array_search($product_id, $wishlist))) {
+        unset( $wishlist[$key] );
+		$answer = json_encode( [ 'status' => 'success', 'answer' => __( 'The product hase been removed from wishlist', 'furniturestore' ) ] );
+    } else {
+        if (count($wishlist) >= 4) {
+            array_shift($wishlist);
+        }
         $wishlist[] = $product_id;
+        $answer = json_encode(['status' => 'success', 'answer' => __('The product hase been added to wishlist', 'furniturestore')]);
     }
 
-    // Обновляем cookie с новым списком пожеланий
-    setcookie('wishlist', json_encode($wishlist), time() + 30 * DAY_IN_SECONDS, '/');
+    $wishlist = implode(',', $wishlist);
+    setcookie('furniturestore_wishlist', $wishlist, time() + 3600 * 24 * 30, '/');
 
-    wp_send_json_success("Product added to wishlist");
+    wp_die($answer);
 }
 
-add_action('wp_ajax_add_to_wishlist', 'add_to_wishlist');
-add_action('wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist');
+function furniturestore_get_withlist() {
+    $wishlist = isset($_COOKIE['furniturestore_wishlist']) ? $_COOKIE['furniturestore_wishlist'] : [];
 
-
-function display_wishlist() {
-    if (!isset($_COOKIE['wishlist'])) {
-        return "<p>Your wishlist is empty.</p>";
+    if ($wishlist) {
+        $wishlist = explode(',', $wishlist);
     }
 
-    $wishlist = json_decode(stripslashes($_COOKIE['wishlist']), true);
-    if (empty($wishlist)) {
-        return "<p>Your wishlist is empty.</p>";
-    }
-
-    $args = [
-        'post_type' => 'product',
-        'posts_per_page' => 8,
-        'post__in' => $wishlist,
-        'orderby' => 'post__in',
-    ];
-
-    $query = new WP_Query($args);
-
-    if (!$query->have_posts()) {
-        return "<p>Your wishlist is empty.</p>";
-    }
-
-    ob_start();
-    echo '<ul class="wishlist-products">';
-    while ($query->have_posts()) {
-        $query->the_post();
-        wc_get_template_part('content', 'wishlist-product');
-    }
-    echo '</ul>';
-
-    wp_reset_postdata();
-    return ob_get_clean();
+    return $wishlist;
 }
 
-add_shortcode('wishlist', 'display_wishlist');
-
-
-// add_action('wp_ajax_furniturestore_wishlist_action', 'furniturestore_wishlist_action_cb');
-// add_action('wp_ajax_nopriv_furniturestore_wishlist_action', 'furniturestore_wishlist_action_cb');
-
-// function furniturestore_wishlist_action_cb() {
-//     if (!isset($_POST['nonce'])) {
-//         echo json_encode(['status' => 'error', 'answer' => __('Security error 1', 'furniturestore')]);
-//         wp_die();
-//     }
-
-//     if (!wp_verify_nonce($_POST['nonce'], 'furniturestore_wishlist_nonce')) {
-//         echo json_encode(['status' => 'error', 'answer' => __('Security error 2', 'furniturestore')]);
-//         wp_die();
-//     }
-
-//     $product_id = (int) $_POST['product_id'];
-//     $product = wc_get_product($product_id);
-   
-//     if (!$product || $product->get_status() != 'publish') {
-//         echo json_encode(['status' => 'error', 'answer' => __('Error product', 'furniturestore')]);
-//         wp_die();
-//     }
-
-//     $withlist = furniturestore_get_withlist();
-
-//     if (in_array($product_id, $withlist)) {
-//         $withlist = array_diff($withlist, [$product_id]); // удаляем продукт из списка
-//         $answer = json_encode(['status' => 'success', 'answer' => __('The product has been removed from wishlist', 'furniturestore')]);
-//     } else {
-//         if (count($withlist) >= 4) {
-//             array_shift($withlist);
-//         }
-//         $withlist[] = $product_id;
-//         $answer = json_encode(['status' => 'success', 'answer' => __('The product has been added to wishlist', 'furniturestore')]);
-//     }
-
-//     $withlist = implode(',',  $withlist);
-//     setcookie('furniturestore_withlist', $withlist, time() + 3600 * 24 * 30, '/');
+// function add_to_wishlist() {
     
-//     echo $answer;
-//     wp_die();
-// }
-
-// function furniturestore_in_withlist($product_id) {
-//     $withlist = furniturestore_get_withlist();
-//     return in_array($product_id, $withlist); // проверяем наличие в массиве
-// }
-
-// function furniturestore_get_withlist() {
-//     $withlist = isset($_COOKIE['furniturestore_withlist']) ? $_COOKIE['furniturestore_withlist'] : '';
-//     if ($withlist) {
-//         $withlist = explode(',', $withlist);
-//     } else {
-//         $withlist = [];
+//     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'furniturestore_wishlist_nonce')) {
+//         wp_send_json_error("Security check failed");
+//         return;
 //     }
-//     return $withlist;
+
+//     if (!isset($_POST['product_id'])) {
+//         wp_send_json_error("No product ID provided");
+//         return;
+//     }
+
+//     $product_id = intval($_POST['product_id']);
+//     $wishlist = isset($_COOKIE['wishlist']) ? json_decode(stripslashes($_COOKIE['wishlist']), true) : [];
+
+//     if (!in_array($product_id, $wishlist)) {
+//         $wishlist[] = $product_id;
+//     }
+
+
+//     setcookie('wishlist', json_encode($wishlist), time() + 30 * DAY_IN_SECONDS, '/');
+
+//     wp_send_json_success("Product added to wishlist");
 // }
+
+// add_action('wp_ajax_add_to_wishlist', 'add_to_wishlist');
+// add_action('wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist');
+
+
+// function remove_from_wishlist() {
+
+//     // Проверка nonce для безопасности
+//     if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'furniturestore_wishlist_nonce' ) ) {
+//         wp_send_json_error("Invalid nonce");
+//         return;
+//     }
+
+//     if ( isset( $_POST['product_id'] ) ) {
+//         $product_id = intval( $_POST['product_id'] );
+        
+//         // Убираем товар из cookie
+//         if ( isset($_COOKIE['wishlist'])) {
+//             $wishlist = json_decode(stripslashes($_COOKIE['wishlist']), true);
+//             if (in_array($product_id, $wishlist)) {
+//                 $wishlist = array_diff($wishlist, [$product_id]);  // Удаляем товар
+//                 setcookie('wishlist', json_encode(array_values($wishlist)), time() + 3600, '/');  // Обновляем cookie
+//             }
+//         }
+
+//         wp_send_json_success("Product removed from wishlist");
+//     } else {
+//         wp_send_json_error("No product ID provided");
+//     }
+// }
+// add_action('wp_ajax_remove_from_wishlist', 'remove_from_wishlist');
+// add_action('wp_ajax_nopriv_remove_from_wishlist', 'remove_from_wishlist');
+
+// function display_wishlist() {
+//     if (!isset($_COOKIE['wishlist'])) {
+//         return "<p>Your wishlist is empty.</p>";
+//     }
+
+//     $wishlist = json_decode(stripslashes($_COOKIE['wishlist']), true);
+//     if (empty($wishlist)) {
+//         return "<p>Your wishlist is empty.</p>";
+//     }
+
+//     $args = [
+//         'post_type' => 'product',
+//         'posts_per_page' => 8,
+//         'post__in' => $wishlist,
+//         'orderby' => 'post__in',
+//     ];
+
+//     $query = new WP_Query($args);
+
+//     if (!$query->have_posts()) {
+//         return "<p>Your wishlist is empty.</p>";
+//     }
+
+//     ob_start();
+//     echo '<ul class="wishlist-products">';
+//     while ($query->have_posts()) {
+//         $query->the_post();
+//         wc_get_template_part('content', 'wishlist-product');
+//     }
+//     echo '</ul>';
+
+//     wp_reset_postdata();
+//     return ob_get_clean();
+// }
+
+// add_shortcode('wishlist', 'display_wishlist');
 
 
 /**

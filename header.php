@@ -70,6 +70,21 @@
 									<?php endif; ?>
 
 								</div>
+								<div class="navbar__wishlist">
+									<?php 
+									$link_wishlist = get_field('wishlist', 'option');
+									if( $link_wishlist ): 
+										$link_url = $link_wishlist['url'];
+										$link_title = $link_wishlist['title'];
+										$link_target = $link_wishlist['target'] ? $link['target'] : '_self';
+										?>
+									<a href="<?php echo esc_url( $link_url ); ?>"
+										target="<?php echo esc_attr( $link_target ); ?>">
+										<i class="fa fa-heart" aria-hidden="true"></i>
+									</a>
+									<?php endif; ?>
+
+								</div>
 								<?php if (! is_cart()): ?>
 								<div class="navbar__cart">
 									<a class="navbar__cart-link">

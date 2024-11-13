@@ -36,15 +36,17 @@ animateImagesOnScroll();
 gsap.to(".about-page__content-bottom", {
     scrollTrigger: {
         trigger: ".about-page__content-bottom",
-        start: "top top",
-        end: "top top",
+        start: "top 95%",
+        end: "bottom top",
+        toggleActions: "play none none reverse",
         onEnter: () => {
-            gsap.set(".about-page__content-bottom", { backgroundColor: "#F5F5F5", duration: 0.5 });
+            gsap.to(".about-page__content-bottom", { backgroundColor: "#F5F5F5", duration: 0.5 });
         },
         onLeaveBack: () => {
-            gsap.set(".about-page__content-bottom", { backgroundColor: "" });
+            gsap.to(".about-page__content-bottom", { backgroundColor: "" });
         }
     }
 });
+
 
 

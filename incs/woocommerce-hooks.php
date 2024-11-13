@@ -371,7 +371,7 @@ function get_last_viewed_products() {
                 while ($query->have_posts()) {
                     $query->the_post();
                 
-                    wc_get_template_part('content', 'product');
+                    wc_get_template_part('content', 'reviewed-product');
 
                 }
                 echo "</div>";
