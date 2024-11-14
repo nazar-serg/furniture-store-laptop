@@ -348,6 +348,11 @@ add_action('template_redirect', function() {
 });
 
 function get_last_viewed_products() {
+
+    if (is_cart() || is_checkout() || is_account_page() || is_search()) {
+        return;
+    }
+
     $viewed_products = isset($_COOKIE['last_viewed_products']) ? json_decode($_COOKIE['last_viewed_products'], true) : null;
     if ($viewed_products !== null) {
 

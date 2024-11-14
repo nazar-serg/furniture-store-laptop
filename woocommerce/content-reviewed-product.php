@@ -9,11 +9,10 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<div <?php wc_product_class( 'product-card-item-reviewed product-loader', $product ); ?>>
-<div class="wishlist-message" style="display: none;"></div>
-	<button class="add-to-wishlist" data-product-id="<?php echo $product->get_id(); ?>">
+<div <?php wc_product_class( 'product-card-item-reviewed', $product ); ?>>
+<div class="custom-wishlist-icon <?php echo furniturestore_in_wishlist($product->get_id()) ? 'in-wishlist' : ''; ?>" data-id="<?php echo $product->get_id(); ?>">
 		<i class="fa fa-heart" aria-hidden="true"></i>
-	</button>
+    </div>
 	<div class="ajax-loader">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon/ripple.svg" alt="icon loader">
     </div>

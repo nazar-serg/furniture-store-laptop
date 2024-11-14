@@ -10,7 +10,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 }
 ?>
 <div <?php wc_product_class( 'product-card-item', $product ); ?>>
-	<div class="custom-wishlist-icon" data-id="<?php echo $product->get_id(); ?>">
+	<div class="custom-wishlist-icon <?php echo furniturestore_in_wishlist($product->get_id()) ? 'in-wishlist' : ''; ?>" data-id="<?php echo $product->get_id(); ?>">
 		<i class="fa fa-heart" aria-hidden="true"></i>
     </div>
 	<div class="ajax-loader">

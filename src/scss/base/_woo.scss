@@ -50,7 +50,7 @@
 	border: 1px solid var(--red-color);
 	background-color: var( --bg-color);
 	padding: 2px 4px;
-	z-index: 10000;
+	z-index: 10;
 }
 .custom-breadcrumb-class {
 	padding: 10px 0;
@@ -126,7 +126,7 @@
 
 // Last viewed items
 .last-viewed-products {
-    padding-bottom: 80px;
+    padding: 40px 0 80px;
     &__wrapper {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -2169,4 +2169,33 @@ select.orderby:hover {
 
 /**
 *  end ajax loader
+*/
+
+/**
+*  Serach page
+*/
+
+.products-wrapper-search {
+    .products-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 20px;
+        row-gap: 40px;
+        @media (max-width: 992px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 480px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    .products-column {
+        flex: 0 1 100%;
+    }
+}
+
+/**
+*  end Serach page
 */

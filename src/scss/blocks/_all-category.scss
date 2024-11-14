@@ -8,17 +8,20 @@
 
 .categories-grid {
     display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+	width: 100%;
 }
 
 .category-item {
-    width: 200px;
+	width: calc(25% - 15px);
     text-align: center;
 	background-color: var(--light-grey-color);
 	padding: 10px;
 	transition: box-shadow .3s ease;
+	@media (max-width: 768px) {
+		width: calc(50% - 10px);
+	}
 	&:hover {
 		box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.15);
 	}

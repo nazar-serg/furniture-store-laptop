@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const productContainer = document.querySelector('.products-row');
     const productCards = document.querySelectorAll('.product-card-item');
-    let visibleCount = 6;
+    let visibleCount = 12;
     const increment = 3;
 
     const loadMoreBtn = document.createElement('button');
